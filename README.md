@@ -16,3 +16,11 @@ vue3.0 基础学习，指令：`v-on\v-bind\v-if\v-show\v-for`
 ## toRef, toRefs, toRaw
 
 `toRef` 只能修改响应式对象
+
+## computed
+
+```bash
+    const fullName = computed(() => {
+        return firstName.value + "--" + lastName.value;
+    });
+```
