@@ -24,3 +24,14 @@ vue3.0 基础学习，指令：`v-on\v-bind\v-if\v-show\v-for`
         return firstName.value + "--" + lastName.value;
     });
 ```
+
+```bash
+    const fullName = computed({
+        get() {
+            return firstName.value + "--" + lastName.value;
+        },
+        set() {
+            firstName.value + "--" + lastName.value;
+        },
+    });
+```
