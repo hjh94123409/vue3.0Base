@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import MyComputed from "./components/MyComputed.vue";
+import MyWatch from "./components/MyWatch.vue";
 </script>
 
 <template>
   <div>
     <h1>App</h1>
     <div>
-      <MyComputed></MyComputed>
+      <MyWatch></MyWatch>
     </div>
   </div>
 </template>
