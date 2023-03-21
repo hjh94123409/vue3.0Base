@@ -83,3 +83,29 @@ vue3.0 基础学习，指令：`v-on\v-bind\v-if\v-show\v-for`
         }
     );
 ```
+
+## watchEffect
+
+立即运行一个函数，同时响应式地追踪其依赖，并在依赖更改时重新执行
+
+```bash
+    const stop = watchEffect(
+        (onInvalidate) => {
+            console.log("message===>", message.value);
+            console.log("message1===>", message1.value);
+            onInvalidate(() => {
+                console.log("我先执行");
+            });
+        },
+        {
+            flush: "post", // 'pre' | 'post' | 'sync' // 默认：'pre'
+            onTrigger(e) {
+                debugger; //调试用
+            },
+        }
+    );
+
+    const stopHandler = () => {
+        stop();
+    };
+```
