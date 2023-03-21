@@ -109,3 +109,103 @@ vue3.0 基础学习，指令：`v-on\v-bind\v-if\v-show\v-for`
         stop();
     };
 ```
+
+## 生命周期
+
+```bash
+    //组件挂载前
+    onBeforeMount(() => {
+        console.log("onBeforeMount===", myTag.value);
+    });
+    //挂载完成
+    onMounted(() => {
+        console.log("onMounted", myTag.value);
+    });
+    //onBeforeMount 读不到dom，onMounted可以读取dom
+
+    //更新之前
+    onBeforeUpdate(() => {
+        console.log("onBeforeUpdate", myTag.value?.innerText);
+    });
+    //更新完成
+    onUpdated(() => {
+        console.log("onUpdated", myTag.value?.innerText);
+    });
+    // onBeforeUpdate 获取的是更新前的dom
+    // onUpdated 获取的是更新后的dom
+
+    //卸载之前
+    onBeforeUnmount(() => {
+        console.log("onBeforeUnmount");
+    });
+    //卸载完成
+    onUnmounted(() => {
+        console.log("onUnmounted");
+    });
+
+    //调试用的两个钩子
+    onRenderTracked((e) => {
+        console.log(e);
+    });
+
+    onRenderTriggered((e) => {
+        console.log(e);
+    });
+```
+
+## 父子组件传参
+
+父组件给子组件传参：
+
+```bash
+    const props = defineProps<{
+        title: string;
+        arr: number[];
+    }>();
+```
+
+ts 特有的 `withDefaults`
+
+```bash
+    const props = withDefaults(
+        defineProps<{
+            title: string;
+            arr: number[];
+        }>(),
+        {
+            arr: () => [1, 2, 3],
+        }
+    );
+```
+
+子组件给父组件传参：
+
+```bash
+    const emits = defineEmits<{
+        (e: "on-click", value: string): void;
+        (e: "on-click2", value: string): void;
+    }>();
+
+    const clickHandler = () => {
+        emits("on-click", "给父组件的值");
+        emits("on-click2", "给父组件的值");
+    };
+```
+
+`defineExpose` 定义暴露
+
+```bash
+    defineExpose({
+        name: "孙悟空",
+        myChildFn: () => console.log("我是通过defineExpose暴露的方法"),
+    });
+```
+
+```bash
+    const myExpose = ref<InstanceType<typeof Child>>();
+
+    const clickHandler = () => {
+        console.log(myExpose.value?.name);
+        myExpose.value?.myChildFn();
+    };
+```
