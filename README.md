@@ -209,3 +209,32 @@ ts 特有的 `withDefaults`
         myExpose.value?.myChildFn();
     };
 ```
+
+## 全局组件
+
+在 `main.ts` 中定义，不需要再单独引用
+
+```bash
+    const app = createApp(App);
+    app.component("Card", Card);
+```
+
+## 动态组件
+
+```bash
+    <component :is="comId"></component>
+```
+
+```bash
+    import A from "./A.vue";
+    const comId = shallowRef(A);
+```
+
+动态切换组件，如 Tab 选项卡，需使用 markRaw 来取消深度响应，提高性能
+
+```bash
+    {
+        name: "A组件",
+        com: markRaw(A),
+    }
+```

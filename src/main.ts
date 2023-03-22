@@ -2,6 +2,13 @@ import { createApp } from "vue";
 
 import "reset.less";
 
+// import Card from "./components/Card.vue";
+
 import App from "./App.vue";
 
-createApp(App).mount("#app");
+const app = createApp(App);
+
+//定义全局组件
+// app.component("Card", Card);
+
+app.mount("#app");
